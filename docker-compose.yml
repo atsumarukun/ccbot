@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  ccbot:
+    build: .
+    image: ccbot
+    container_name: ccbot
+    tty: true
+    volumes:
+      - ./files:/files
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    working_dir: /files
+    environment:
+      DISPLAY: unix$DISPLAY
