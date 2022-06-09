@@ -1,7 +1,7 @@
 from ccbot.models.base import ModelBase
 
 class Gmocoin(ModelBase):
-    WEBSOCKET_URL = 'wss://api.coin.z.com/ws/public/v1'
+    WEBSOCKET_URL = "wss://api.coin.z.com/ws/public/v1"
 
     def __init__(self, symbol: str):
         super().__init__()

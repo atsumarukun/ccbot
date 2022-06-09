@@ -2,14 +2,14 @@ import asyncio
 import aiohttp
 
 from ccbot.ws import ws_run_forever
-from ccbot.models.gmocoin import Gmocoin
+from ccbot.models.bitflyer import Bitflyer
 
 async def main():
-    gmocoin = Gmocoin("BTC_JPY")
+    bitflyer = Bitflyer("BTC_JPY")
 
     async with aiohttp.ClientSession() as session:
         await asyncio.gather(
-            ws_run_forever(session, gmocoin)
+            ws_run_forever(session, bitflyer)
         )
 
 if __name__ == "__main__":
