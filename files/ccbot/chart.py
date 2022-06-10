@@ -15,11 +15,14 @@ class Chart:
 
     async def draw_chart(self):
         self.fig.canvas.restore_region(self.bg)
+        all_top_asks = []
         for com in self.coms:
             com.top_asks.append(com.asks.values()[0][0])
             del com.top_asks[0]
             com.line.set_ydata(com.top_asks)
             self.ax.draw_artist(com.line)
+            all_top_asks += com.top_asks
+        self.ax.set_ylim(min(all_top_asks), max(all_top_asks))
        
         self.fig.canvas.blit(self.ax.bbox)
         self.fig.canvas.flush_events()
