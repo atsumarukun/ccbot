@@ -6,10 +6,8 @@ async def ws_run_forever(session: aiohttp.ClientSession, model, chart) -> None:
         await ws.send_json(model.params)
         async for msg in ws:
             if msg.type == aiohttp.WSMsgType.TEXT:
-                model.orderbook(msg.json())
                 try:
-                    if type(model).__name__ == "Gmocoin":
-                        print("GMO")
+                    model.orderbook(msg.json())
                     await chart.draw_chart()
                 except:
                     pass
