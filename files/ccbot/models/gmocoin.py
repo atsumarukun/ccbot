@@ -9,6 +9,6 @@ class Gmocoin(ModelBase):
 
     def orderbook(self, msg: dict) -> dict:
         self.asks.clear(), self.bids.clear()
-        super()._update(self.asks, msg["asks"], 1)
-        super()._update(self.bids, msg["bids"], -1)
+        self._update(self.asks, msg["asks"], 1)
+        self._update(self.bids, msg["bids"], -1)
         return {"asks": self.asks, "bids": self.bids}

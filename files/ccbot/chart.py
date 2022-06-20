@@ -13,7 +13,7 @@ class Chart:
             com.line, = self.ax.plot(com.top_asks)
         self.fig.show()
 
-    async def draw_chart(self):
+    async def main(self):
         self.fig.canvas.restore_region(self.bg)
         all_top_asks = []
         for com in self.coms:

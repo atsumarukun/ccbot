@@ -8,6 +8,6 @@ class Bitflyer(ModelBase):
         self.params = {"method": "subscribe", "params": {"channel": f"lightning_board_{symbol}"}}
 
     def orderbook(self, msg: dict) -> dict:
-        super()._update(self.asks, msg["params"]["message"]["asks"], 1)
-        super()._update(self.bids, msg["params"]["message"]["bids"], -1)
+        self._update(self.asks, msg["params"]["message"]["asks"], 1)
+        self._update(self.bids, msg["params"]["message"]["bids"], -1)
         return {"asks": self.asks, "bids": self.bids}
