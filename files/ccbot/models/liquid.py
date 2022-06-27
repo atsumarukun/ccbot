@@ -1,6 +1,7 @@
 import json
 from sortedcontainers import SortedDict
 
+from ccbot.exception import TimeOutException
 from ccbot.models.base import ModelBase
 
 class Liquid(ModelBase):
@@ -14,6 +15,10 @@ class Liquid(ModelBase):
         self.asks.clear(), self.bids.clear()
         self._update(self.asks, json.loads(msg["data"])["asks"], 1)
         self._update(self.bids, json.loads(msg["data"])["bids"], -1)
+        ts = float(json.loads(msg["data"])["timestamp"])
+        if self.ts and 3 < ts - self.ts:
+            raise TimeOutException()
+        self.ts = ts
         return {"asks": self.asks, "bids": self.bids}
 
     def _update(self, ob: SortedDict, data: list, sign: int) -> None:

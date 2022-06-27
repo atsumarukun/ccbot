@@ -12,4 +12,7 @@ class Test:
                 max_com = com
             elif com.asks.values()[0][0] < min_com.asks.values()[0][0]:
                 min_com = com
-        print(type(max_com).__name__, type(min_com).__name__)
+        ask_diff = max_com.asks.values()[0][0] - min_com.asks.values()[0][0]
+        bid_diff = max_com.asks.values()[1][0] - min_com.asks.values()[1][0]
+
+        print(type(max_com).__name__, type(min_com).__name__, ask_diff, bid_diff)

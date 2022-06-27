@@ -4,6 +4,7 @@ class ModelBase:
     def __init__(self):
         self.asks = SortedDict()
         self.bids = SortedDict()
+        self.ts = None
 
     def orderbook(self) -> dict:
         pass
