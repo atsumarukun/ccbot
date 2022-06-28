@@ -12,10 +12,19 @@ async def ws_run_forever(session: aiohttp.ClientSession, model, function) -> Non
                     model.orderbook(msg.json())
                     # await function.main()
                 except TimeOutException as e:
-                    print(e)
+                    print(f"[{type(model).__name__}] Reconnect websocket.")
+                    model.params["event"] = "pusher:unsubscribe"
+                    await ws.send_json(model.params)
+                    await asyncio.sleep(3)
+                    model.params["event"] = "pusher:subscribe"
+                    await ws.send_json(model.params)
+                    model.i = 0
+                except (TypeError, KeyError):
+                    pass
                 except:
                     import traceback
                     traceback.print_exc()
+                    quit()
             elif msg.type == aiohttp.WSMsgType.ERROR:
                 print(msg.json())
                 quit()

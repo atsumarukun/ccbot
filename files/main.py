@@ -24,8 +24,8 @@ async def main():
             # ws_run_forever(session, gmocoin, test),
             # ws_run_forever(session, bitflyer, test),
             # ws_run_forever(session, coincheck, test),
-            # ws_run_forever(session, liquid, test),
-            ws_run_forever(session, binance, test)
+            ws_run_forever(session, liquid, test)
+            # ws_run_forever(session, binance, test)
         )
 
 if __name__ == "__main__":
